@@ -1,0 +1,13 @@
+import = ["~/.config/alacritty/themes/themes/tokyo-night-storm.toml"]
+[window]
+dynamic_padding = true
+opacity = 0.7
+blur = true
+dynamic_title = true
+
+[font]
+normal = { family = "Iosevka Term SS14 Extended", style = "Regular" }
+size = 12
+
+[mouse]
+hide_when_typing = true
