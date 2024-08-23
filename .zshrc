@@ -42,7 +42,7 @@ zinit wait light-mode depth"1" for \
     atload"!_zsh_autosuggest_start" \
         zsh-users/zsh-autosuggestions \
     as"completion" \
-    has"jocker" \
+    has"docker" \
         OMZP::docker/completions/_docker \
     as"completion" \
     has"docker-compose" \
@@ -62,8 +62,7 @@ zinit ice as"program" from"gh-r" \
     mv"bat-* -> bat" pick"bat/autocomplete/bat.zsh"
 zinit light sharkdp/bat
 
-zinit ice as"program" from"gh-r"
-
+zinit ice as"program" from"gh-r" completions
 zinit light eza-community/eza
 
 if [[ -f /etc/debian_version ]]; then
@@ -80,6 +79,7 @@ if [[ -f /etc/debian_version ]]; then
 fi
 
 zi ice \
+    depth"1" \
     has"conda" \
     blockf \
     as"completion" \
@@ -99,12 +99,13 @@ zi ice \
     has"bun" \
     id-as"bun" \
     as"null" \
-    atclone'bun completions > bun.plugin.zsh' \
+    atclone'bun completions > _bun' \
     atpull"%atclone" \
     wait
 zi light zdharma-continuum/null
 
 zi ice \
+    depth"1" \
     has"pnpm" \
     atload"zpcdreplay" \
     atclone"./zplug.zsh" \
@@ -112,10 +113,14 @@ zi ice \
     wait
 zi light g-plane/pnpm-shell-completion
 
-zi ice \
-    has"yarn" \
-    wait
+zi ice has"yarn" wait
 zi snippet OMZP::yarn
+
+zi ice has"git" wait
+zi snippet OMZP::git
+
+zi ice wait
+zi snippet OMZP::eza
 
 zi ice \
     has"podman" \
@@ -138,7 +143,6 @@ zi light zdharma-continuum/null
 bindkey -v
 
 # aliases
-alias ls="eza -lTh --icons=auto --color=auto -L 1"
 alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 alias top='sudo btop'
 alias gtop='sudo intel_gpu_top'
@@ -147,4 +151,3 @@ alias vim='nvim'
 alias ip='ip -c'
 alias aria2c='aria2c --enable-rpc=false' 
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
