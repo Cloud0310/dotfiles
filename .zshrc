@@ -42,7 +42,7 @@ zinit wait light-mode depth"1" for \
     atload"!_zsh_autosuggest_start" \
         zsh-users/zsh-autosuggestions \
     as"completion" \
-    has"docker" \
+    has"jocker" \
         OMZP::docker/completions/_docker \
     as"completion" \
     has"docker-compose" \
@@ -111,6 +111,11 @@ zi ice \
     atpull"%atclone" \
     wait
 zi light g-plane/pnpm-shell-completion
+
+zi ice \
+    has"yarn" \
+    wait
+zi snippet OMZP::yarn
 
 zi ice \
     has"podman" \
