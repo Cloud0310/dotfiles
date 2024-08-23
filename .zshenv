@@ -24,3 +24,7 @@ export SSH_AGENT_PID=''
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export GPG_TTY=$(tty)
 
+export HTTP_PROXY=http://localhost:7890
+export HTTPS_PROXY=http://localhost:7890
+export EDITOR=nvim
+
