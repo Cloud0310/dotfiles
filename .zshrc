@@ -62,7 +62,7 @@ zinit ice as"program" from"gh-r" \
     mv"bat-* -> bat" pick"bat/autocomplete/bat.zsh"
 zinit light sharkdp/bat
 
-zinit ice as"program" from"gh-r" completions
+zinit ice as"program" from"gh-r"
 zinit light eza-community/eza
 
 if [[ -f /etc/debian_version ]]; then

@@ -17,9 +17,6 @@ setopt hist_ignore_all_dups
 export TERM=xterm-256color
 export COLORFGBG="15;0"
 
-# electron wayland
-export ELECTRON_OZONE_PLATFORM_HINT=wayland
-
 export SSH_AGENT_PID=''
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 export GPG_TTY=$(tty)
