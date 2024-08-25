@@ -1,5 +1,7 @@
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
+bindkey -v
+
 cd() {
     if [[ -n '$1' ]]; then
         z "$@" && eza -lT -L 1 --icons=auto --color=auto
@@ -105,8 +107,6 @@ zi snippet OMZP::git
 
 zi ice wait
 zi snippet OMZP::eza
-
-bindkey -v
 
 # aliases
 alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'

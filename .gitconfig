@@ -1,0 +1,14 @@
+[user]
+	name = Cloud0310
+	signingkey = 130B44D8EEA84438
+	email = 60375730+Cloud0310@users.noreply.github.com
+[tar "zst"]
+	command = zstd
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main
+[credential]
+	credentialStore = gpg
+[pull]
+	rebase = true
