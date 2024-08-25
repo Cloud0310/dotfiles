@@ -49,60 +49,44 @@ zinit wait light-mode depth"1" for \
         OMZP::docker-compose/_docker-compose
 
 zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-          atpull"%atclone" src"init.zsh"
+    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+    atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
-zinit ice as"command" from"gh-r"\
-  atclone"./zoxide init zsh > init.zsh" \
-  atpull"%atclone" src"init.zsh" nocompile'!'
-zinit light ajeetdsouza/zoxide
+zi ice as"command" from"gh-r"\
+    atclone"./zoxide init zsh > init.zsh" \
+    atpull"%atclone" src"init.zsh" nocompile'!'
+zi light ajeetdsouza/zoxide
 
-zinit ice as"program" from"gh-r" \
+zi ice as"program" from"gh-r" \
     mv"bat-* -> bat" pick"bat/autocomplete/bat.zsh"
-zinit light sharkdp/bat
+zi light sharkdp/bat
 
-zinit ice as"program" from"gh-r"
-zinit light eza-community/eza
+zi ice as"program" from"gh-r"
+zi light eza-community/eza
 
-if [[ -f /etc/debian_version ]]; then
-    if ! command -v aptitude &> /dev/null; then
-        echo "aptitude is not installed. Installing..."
-        sudo apt-get update
-        sudo apt-get install -y aptitude
-    fi
-    apt_pref='aptitude'
-    apt_upgr='safe-upgrade'
-
-    zinit ice wait has"aptitude"
-    zinit snippet OMZP::debian
-fi
+zi ice wait has"apt" \
+    atinit"sudo apt update; sudo apt install aptitude -y" \
+    atload"apt_upgr=safe-upgrade; apt_pref=aptitude" \
+zi snippet OMZP::debian
 
 zi ice \
     depth"1" \
     has"conda" \
     blockf \
-    as"completion" \
+    as"null" \
     wait
 zi light conda-incubator/conda-zsh-completion
 
-zi ice \
-    has"volta" \
-    id-as"volta" \
-    as"null" \
-    atclone'volta completions zsh -f -o _volta' \
-    atpull"%atclone" \
-    wait
-zi light zdharma-continuum/null
-
-zi ice \
-    has"bun" \
-    id-as"bun" \
-    as"null" \
-    atclone'bun completions > _bun' \
-    atpull"%atclone" \
-    wait
-zi light zdharma-continuum/null
+zi wait as"null" light-mode completions atpull"%atclone" for \
+    has"volta" id-as"volta" atclone'volta completions zsh > _volta' \
+        zdharma-continuum/null \
+    has"bun" id-as"bun" atclone'bun completions > _bun' \
+        zdharma-continuum/null \
+    has"podman" id-as"podman" atclone'podman completion zsh -f _podman' \
+        zdharma-continuum/null \
+    has"rye" id-as"rye" atclone'rye self completion -s zsh > _rye' \
+        zdharma-continuum/null
 
 zi ice \
     depth"1" \
@@ -121,24 +105,6 @@ zi snippet OMZP::git
 
 zi ice wait
 zi snippet OMZP::eza
-
-zi ice \
-    has"podman" \
-    id-as"podman" \
-    as"null" \
-    atclone'podman completion zsh -f _podman' \
-    atpull"%atclone" \
-    wait
-zi light zdharma-continuum/null
-
-zi ice \
-    has"rye" \
-    id-as"rye" \
-    as"null" \
-    atclone'rye self completion -s zsh > _rye' \
-    atpull"%atclone" \
-    wait
-zi light zdharma-continuum/null
 
 bindkey -v
 
