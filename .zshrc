@@ -25,7 +25,7 @@ autoload -Uz _zinit
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
-zinit light-mode for \
+zi light-mode for \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
@@ -33,7 +33,7 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-zinit wait light-mode depth"1" for \
+zi wait light-mode depth"1" for \
         OMZL::clipboard.zsh \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
         zdharma-continuum/history-search-multi-word \
@@ -50,10 +50,10 @@ zinit wait light-mode depth"1" for \
     has"docker-compose" \
         OMZP::docker-compose/_docker-compose
 
-zinit ice as"command" from"gh-r" \
+zi ice as"command" from"gh-r" \
     atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
     atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+zi light starship/starship
 
 zi ice as"command" from"gh-r"\
     atclone"./zoxide init zsh > init.zsh" \
