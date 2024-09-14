@@ -67,18 +67,7 @@ zi light sharkdp/bat
 zi ice as"program" from"gh-r"
 zi light eza-community/eza
 
-zi ice wait has"apt" \
-    atinit"sudo apt update; sudo apt install aptitude -y" \
-    atload"apt_upgr=safe-upgrade; apt_pref=aptitude" \
-zi snippet OMZP::debian
-
-zi ice \
-    depth"1" \
-    has"conda" \
-    blockf \
-    as"null" \
-    wait
-zi light conda-incubator/conda-zsh-completion
+# as"null" for no zsh/plugin.zsh script, completions for detect completions in the repository
 
 zi wait as"null" light-mode completions atpull"%atclone" for \
     has"volta" id-as"volta" atclone'volta completions zsh > _volta' \
@@ -89,6 +78,16 @@ zi wait as"null" light-mode completions atpull"%atclone" for \
         zdharma-continuum/null \
     has"rye" id-as"rye" atclone'rye self completion -s zsh > _rye' \
         zdharma-continuum/null
+
+# has plugin.zsh file, but just for fpath addition, so blockf and as"completion" completions for detecti completions in the repository
+zi ice \
+    depth"1" \
+    has"conda" \
+    blockf \
+    as"completion" \
+    completions \
+    wait
+zi light conda-incubator/conda-zsh-completion
 
 zi ice \
     depth"1" \
@@ -107,6 +106,11 @@ zi snippet OMZP::git
 
 zi ice wait
 zi snippet OMZP::eza
+
+zi ice wait has"apt" \
+    atinit"sudo apt update; sudo apt install aptitude -y" \
+    atload"apt_upgr=safe-upgrade; apt_pref=aptitude" \
+zi snippet OMZP::debian
 
 # aliases
 alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
