@@ -1,6 +1,6 @@
 # PATH
 export PATH=$PATH:$HOME/Android/Sdk/platform-tools
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/go/bin
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin":$PATH

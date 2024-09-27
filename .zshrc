@@ -77,7 +77,9 @@ zi wait as"null" light-mode completions atpull"%atclone" for \
     has"podman" id-as"podman" atclone'podman completion zsh -f _podman' \
         zdharma-continuum/null \
     has"rye" id-as"rye" atclone'rye self completion -s zsh > _rye' \
-        zdharma-continuum/null
+        zdharma-continuum/null \
+    has"rustup" id-as"rust" atclone'rustup completions zsh > _rustup;rustup completions zsh cargo > _cargo' \
+        zdharma-continuum/null \
 
 # has plugin.zsh file, but just for fpath addition, so blockf and as"completion" completions for detecti completions in the repository
 zi ice \
